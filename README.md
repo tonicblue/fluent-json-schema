@@ -283,7 +283,9 @@ console.log({ valid })
 
 Output:
 
-    {valid: true}
+```js
+{valid: true}
+```
 
 ## Extend schema
 
