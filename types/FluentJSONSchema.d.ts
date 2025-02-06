@@ -107,6 +107,7 @@ export interface IntegerSchema extends BaseSchema<IntegerSchema> {
 
 export interface ArraySchema extends BaseSchema<ArraySchema> {
   items: (items: JSONSchema | Array<JSONSchema>) => ArraySchema
+  prefixItems: (items: Array<JSONSchema>) => ArraySchema
   additionalItems: (items: Array<JSONSchema> | boolean) => ArraySchema
   contains: (value: JSONSchema | boolean) => ArraySchema
   uniqueItems: (boolean: boolean) => ArraySchema

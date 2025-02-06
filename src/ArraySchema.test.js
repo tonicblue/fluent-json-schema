@@ -60,6 +60,26 @@ describe('ArraySchema', () => {
       })
     })
 
+    describe('prefixItems', () => {
+      it('valid array', () => {
+        assert.deepStrictEqual(
+          ArraySchema().prefixItems([S.number(), S.string()]).valueOf(),
+          {
+            type: 'array',
+            prefixItems: [{ type: 'number' }, { type: 'string' }]
+          }
+        )
+      })
+      it('invalid', () => {
+        assert.throws(
+          () => ArraySchema().prefixItems(''),
+          (err) =>
+            err instanceof S.FluentSchemaError &&
+            err.message === "'prefixItems' must be an array of S"
+        )
+      })
+    })
+
     describe('additionalItems', () => {
       it('valid', () => {
         assert.deepStrictEqual(

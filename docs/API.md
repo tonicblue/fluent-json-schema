@@ -11,6 +11,11 @@ If &quot;items&quot; is an array of schemas, validation succeeds if each element
 Omitting this keyword has the same behavior as an empty schema.</p>
 <p><a href="https://tools.ietf.org/id/draft-handrews-json-schema-validation-01.html#rfc.section.6.4.1">reference</a></p>
 </dd>
+<dt><a href="#prefixItems">prefixItems(items)</a> ⇒ <code>FluentSchema</code></dt>
+<dd><p>This keyword determines how child instances validate for arrays, and does not directly validate the immediate instance itself.
+If &quot;prefixItems&quot; is an array of schemas, validation succeeds if each element of the instance validates against the schema at the same position.</p>
+<p><a href="https://tools.ietf.org/id/draft-handrews-json-schema-validation-01.html#rfc.section.6.4.1">reference</a></p>
+</dd>
 <dt><a href="#additionalItems">additionalItems(items)</a> ⇒ <code>FluentSchema</code></dt>
 <dd><p>This keyword determines how child instances validate for arrays, and does not directly validate the immediate instance itself.</p>
 <p><a href="https://tools.ietf.org/id/draft-handrews-json-schema-validation-01.html#rfc.section.6.4.2">reference</a></p>
@@ -1252,4 +1257,3 @@ The value of this property must be a media type, as defined by RFC 2046 [RFC2046
 | Param | Type |
 | --- | --- |
 | mediaType | [<code>string</code>](#string) |
-

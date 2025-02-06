@@ -64,6 +64,31 @@ const ArraySchema = ({ schema = initialState, ...options } = {}) => {
 
     /**
      * This keyword determines how child instances validate for arrays, and does not directly validate the immediate instance itself.
+     * If "prefixItems" is an array of schemas, validation succeeds if each element of the instance validates against the schema at the same position, if any.
+     *
+     * {@link https://tools.ietf.org/id/draft-handrews-json-schema-validation-01.html#rfc.section.6.4.1|reference}
+     * @param {FluentSchema[]} prefixItems
+     * @returns {FluentSchema[]}
+     */
+
+    prefixItems: prefixItems => {
+      if (
+        !(
+          Array.isArray(prefixItems) &&
+          prefixItems.filter(v => isFluentSchema(v)).length > 0
+        )
+      ) { throw new FluentSchemaError("'prefixItems' must be an array of S") }
+      if (Array.isArray(prefixItems)) {
+        const values = prefixItems.map(v => {
+          const { $schema, ...rest } = v.valueOf()
+          return rest
+        })
+        return setAttribute({ schema, ...options }, ['prefixItems', values, 'array'])
+      }
+    },
+
+    /**
+     * This keyword determines how child instances validate for arrays, and does not directly validate the immediate instance itself.
      *
      * {@link https://tools.ietf.org/id/draft-handrews-json-schema-validation-01.html#rfc.section.6.4.2|reference}
      * @param {FluentSchema|boolean} items

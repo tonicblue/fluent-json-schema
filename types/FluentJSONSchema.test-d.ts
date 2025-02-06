@@ -32,6 +32,7 @@ const schema = S.object()
   )
   .required()
   .prop('addresses', S.array().items([S.ref('#address')]))
+  .prop('tuples', S.array().prefixItems([S.string(), S.number()]))
   .required()
   .prop(
     'role',
